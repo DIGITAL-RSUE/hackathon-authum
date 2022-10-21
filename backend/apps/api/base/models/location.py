@@ -17,6 +17,7 @@ class Location(models.Model, DisplayMixin):
         verbose_name=_("Тип сотрудничества"),
         blank=True,
         null=True,
+        on_delete=models.CASCADE,
     )
     site_url = models.URLField(
         _("Ссылка на сайт партнера/заказчика"), blank=True, null=True

@@ -9,4 +9,4 @@ class TypePurchase(models.IntegerChoices):
 
     WHOLESALE = 0, _("Опт")
     RETAIL = 1, _("Розница")
-    BOTH = 1, _("Оба варианта")
+    BOTH = 2, _("Оба варианта")

@@ -9,4 +9,4 @@ class DisplayPrice(models.IntegerChoices):
 
     NO = 0, _("Нет")
     YES = 1, _("Да")
-    TEXT = 1, _("Отображать текст")
+    TEXT = 2, _("Отображать текст")

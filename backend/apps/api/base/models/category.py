@@ -19,7 +19,9 @@ class Category(
     )
     name = models.CharField(_("Наименование"), max_length=150)
     parent = models.ForeignKey(
-        "self", verbose_name=_("Родительская категория")
+        "self",
+        verbose_name=_("Родительская категория"),
+        on_delete=models.CASCADE,
     )
 
     class Meta:
