@@ -1,0 +1,8 @@
+stages:
+    - deploy
+deploy-job:
+    stage: deploy
+    script:
+        - echo "Deploying application..."
+        - rsync -av --no-perms --no-owner --no-group --exclude ".git*" $CI_PROJECT_DIR/ /var/www/$CI_PROJECT_NAME
+        - echo "Application successfully deployed."

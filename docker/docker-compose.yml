@@ -1,0 +1,93 @@
+version: '3.7'
+
+services:
+  db:
+    image: postgres:12.0-alpine
+    volumes:
+      - pg-data:/var/lib/postgresql/data/
+    restart: always
+    environment:
+      POSTGRES_DB: postgres
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+    expose:
+      - 5432
+
+  backend:
+    build:
+      context: ..
+      dockerfile: docker/Dockerfile.backend.dev
+    command: sh -c "
+      ./wait-for db:5432 &&
+      poetry run task collectstatic --clear &&
+      poetry run task migrate &&
+      poetry run task defaultadmin &&
+      poetry run task defaultfixtures &&
+      poetry run task server"
+    expose:
+      - 8000
+    volumes:
+      - ../.env:/var/www/app/.env
+      - ../backend:/var/www/app/backend
+      - static:/var/www/app/serve/static
+      - media:/var/www/app/serve/media
+      - logs:/var/www/app/private/logs
+    restart: always
+    depends_on:
+      - db
+
+  frontend:
+    build:
+      context: ..
+      dockerfile: docker/Dockerfile.frontend.dev
+    command: quasar dev
+    expose:
+      - 8080
+    volumes:
+      - ../.env:/var/www/app/.env
+      - ../src:/var/www/app/src
+      - ../src-ssr:/var/www/app/src-ssr
+      - ../quasar.conf.js:/var/www/app/quasar.conf.js
+    restart: always
+    depends_on:
+      - backend
+
+  nginx:
+    image: nginx:1.17.6-alpine
+    volumes:
+      - ..:/var/www/app/
+      - ./nginx.conf:/etc/nginx/nginx.conf
+      - static:/var/www/app/serve/static
+      - media:/var/www/app/serve/media
+      - logs:/var/www/app/private/logs
+    restart: always
+    ports:
+      - 80:80
+    depends_on:
+      - frontend
+
+volumes:
+  static:
+    driver: local
+    driver_opts:
+      type: none
+      device: 'volumes/static'
+      o: bind
+  media:
+    driver: local
+    driver_opts:
+      type: none
+      device: 'volumes/media'
+      o: bind
+  pg-data:
+    driver: local
+    driver_opts:
+      type: none
+      device: 'volumes/pg-data'
+      o: bind
+  logs:
+    driver: local
+    driver_opts:
+      type: none
+      device: 'volumes/logs'
+      o: bind
