@@ -8,6 +8,12 @@ class SubCategorySerializer(serializers.ModelSerializer):
         model = Category
         exclude  = ["exhibitor",]
 
+class CategoryNestedSerializer(serializers.ModelSerializer):
+    subcategories = SubCategorySerializer(many=True)
+    class Meta:
+        model = Category
+        exclude  = ["exhibitor",]
+
 class CategorySerializer(serializers.ModelSerializer):
     subcategories = SubCategorySerializer(many=True)
     class Meta:
