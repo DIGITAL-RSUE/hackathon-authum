@@ -19,7 +19,9 @@ jobs:
     steps:
       - name: Read Docker Image Identifiers
         id: read-docker-image-identifiers
-        run: echo ::set-env name=BASE_IMAGE_NAME::$(echo ${{ github.repository }} | tr '[:upper:]' '[:lower:]')
+        run: |
+          BASE_IMAGE_NAME="$(echo ${{ github.repository }} | tr '[:upper:]' '[:lower:]')""
+          echo "BASE_IMAGE_NAME=${BASE_IMAGE_NAME}" >> $GITHUB_ENV
 
       - name: Checkout repository
         uses: actions/checkout@v3
