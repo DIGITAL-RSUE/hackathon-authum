@@ -27,13 +27,7 @@ RUN apk update \
     libxml2 \
     libxslt \
     libxslt-dev \
-    fontconfig \
-    ttf-freefont \
-    font-noto \
-    terminus-font \
     make
-
-RUN  fc-cache -f
 
 RUN curl -sSL https://raw.githubusercontent.com/python-poetry/poetry/master/get-poetry.py | python
 ENV PATH="${PATH}:/root/.poetry/bin"
