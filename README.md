@@ -89,32 +89,29 @@ A step by step series of examples that tell you how to get a development env run
 Say what the step will be
 
 ```
-Give the example
+make install
 ```
 
-And repeat
+And start
 
 ```
-until finished
+make run
 ```
 
-## 🎈 Usage <a name="usage"></a>
-
-Add notes about how to use the system.
 
 ## ⛏️ Built With <a name = "tech_stack"></a>
 
-- [MongoDB](https://www.mongodb.com/) - Database
-- [Express](https://expressjs.com/) - Server Framework
+- [PostgreSQL](https://www.postgresql.org/) - Database
+- [Django](https://www.djangoproject.com/) - Server Framework
 - [VueJs](https://vuejs.org/) - Web Framework
-- [NodeJs](https://nodejs.org/en/) - Server Environment
 
 ## ✍️ Authors <a name = "authors"></a>
 
-- [@kylelobo](https://github.com/kylelobo) - Idea & Initial work
-
-See also the list of [contributors](https://github.com/kylelobo/The-Documentation-Compendium/contributors)
-who participated in this project.
+- [@lenston19](https://github.com/lenston19) - Frontend
+- [@ghettoDdOS](https://github.com/ghettoDdOS) - Backend
+- [@kiselevvn](https://github.com/kiselevvn) - Backend
+- [@NikitaGrishchenko](https://github.com/NikitaGrishchenko) - Team Lead, Design
+- [@mihgank](https://github.com/mihgank) - Frontend
 
 ## 🎉 Acknowledgments <a name = "acknowledgments"></a>
 
