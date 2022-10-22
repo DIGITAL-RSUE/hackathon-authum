@@ -28,7 +28,7 @@ services:
       - static:/var/www/app/serve/static
       - media:/var/www/app/serve/media
       - logs:/var/www/app/private/logs
-      # - ${PROJECT_PATH}/.env:/var/www/app/.env
+      - ${PROJECT_PATH}/.env:/var/www/app/.env
     restart: always
     depends_on:
       - db
