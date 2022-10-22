@@ -21,8 +21,7 @@ jobs:
         id: read-docker-image-identifiers
         run: |
           BASE_IMAGE_NAME="$(echo ${{ github.repository }} | tr '[:upper:]' '[:lower:]')"
-          echo "BACKEND_IMAGE=${{ env.REGISTRY }}/${BASE_IMAGE_NAME}:backend" >> $GITHUB_ENV
-          echo "FRONTEND_IMAGE=${{ env.REGISTRY }}/${BASE_IMAGE_NAME}:frontend" >> $GITHUB_ENV
+          echo "BASE_IMAGE_NAME=${BASE_IMAGE_NAME}" >> $GITHUB_ENV
 
       - name: Checkout repository
         uses: actions/checkout@v3
@@ -44,9 +43,9 @@ jobs:
           context: .
           file: ./config/Dockerfile.frontend
           push: true
-          tags: ${{ env.FRONTEND_IMAGE }}
-          cache-from: type=registry,ref=${{ env.FRONTEND_IMAGE }}:buildcache
-          cache-to: type=registry,ref=${{ env.FRONTEND_IMAGE }}:buildcache,mode=max
+          tags: ${{ env.REGISTRY }}/${{ env.BASE_IMAGE_NAME }}:frontend
+          cache-from: type=gha
+          cache-to: type=gha,mode=max
 
       - name: Build and push Docker backend image
         id: build-and-push-backend
@@ -55,9 +54,10 @@ jobs:
           context: .
           file: ./config/Dockerfile.backend
           push: true
-          tags: ${{ env.BACKEND_IMAGE }}
-          cache-from: type=registry,ref=${{ env.BACKEND_IMAGE }}:buildcache
-          cache-to: type=registry,ref=${{ env.BACKEND_IMAGE }}:buildcache,mode=max
+          tags: ${{ env.REGISTRY }}/${{ env.BASE_IMAGE_NAME }}:backend
+          cache-from: type=gha
+          cache-to: type=gha,mode=max
+
   deploy:
     runs-on: ubuntu-latest
     needs: build
