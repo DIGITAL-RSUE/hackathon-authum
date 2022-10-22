@@ -63,6 +63,7 @@ jobs:
     if: success()
     steps:
       - name: Trigger portainer webhook
-        uses: distributhor/workflow-webhook
+        uses: fjogeleit/http-request-action@v1
         with:
           url: "${{ secrets.PORTAINER_WEBHOOK }}"
+          method: "POST"
