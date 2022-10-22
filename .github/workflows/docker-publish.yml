@@ -33,7 +33,7 @@ jobs:
           password: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Build and push Docker frontend image
-        id: build-and-push
+        id: build-and-push-frontend
         uses: docker/build-push-action@3
         with:
           context: .
@@ -44,7 +44,7 @@ jobs:
           cache-to: type=gha,mode=max
 
       - name: Build and push Docker backend image
-        id: build-and-push
+        id: build-and-push-backend
         uses: docker/build-push-action@3
         with:
           context: .
