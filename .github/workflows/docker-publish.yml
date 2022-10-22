@@ -21,8 +21,8 @@ jobs:
         id: read-docker-image-identifiers
         run: |
           BASE_IMAGE_NAME="$(echo ${{ github.repository }} | tr '[:upper:]' '[:lower:]')"
-          echo "BACKEND_IMAGE=${{ env.REGISTRY }}/${{ env.BASE_IMAGE_NAME }}:backend" >> $GITHUB_ENV
-          echo "FRONTEND_IMAGE=${{ env.REGISTRY }}/${{ env.BASE_IMAGE_NAME }}:frontend" >> $GITHUB_ENV
+          echo "BACKEND_IMAGE=${{ env.REGISTRY }}/${BASE_IMAGE_NAME}:backend" >> $GITHUB_ENV
+          echo "FRONTEND_IMAGE=${{ env.REGISTRY }}/${BASE_IMAGE_NAME}:frontend" >> $GITHUB_ENV
 
       - name: Checkout repository
         uses: actions/checkout@v3
