@@ -8,7 +8,6 @@ on:
 
 env:
   REGISTRY: ghcr.io
-  BASE_IMAGE_NAME: ${{ github.repository }}
 
 jobs:
   build:
@@ -17,8 +16,11 @@ jobs:
       contents: read
       packages: write
       id-token: write
-
     steps:
+      - name: Read Docker Image Identifiers
+        id: read-docker-image-identifiers
+        run: echo ::set-env name=BASE_IMAGE_NAME::$(echo ${{ github.repository }} | tr '[:upper:]' '[:lower:]')
+
       - name: Checkout repository
         uses: actions/checkout@v3
 
