@@ -29,8 +29,8 @@ RUN apk update \
     libxslt-dev \
     make
 
-RUN curl -sSL https://raw.githubusercontent.com/python-poetry/poetry/master/get-poetry.py | python
-ENV PATH="${PATH}:/root/.poetry/bin"
+RUN curl -sSL https://install.python-poetry.org | POETRY_HOME=/etc/poetry python
+ENV PATH="${PATH}:/etc/poetry/bin"
 
 # install backend packages
 COPY poetry.toml poetry.toml
