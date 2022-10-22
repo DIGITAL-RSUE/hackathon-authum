@@ -1,40 +1,30 @@
 from django.urls import path
 from rest_framework.routers import DefaultRouter
 
-from .views import ExhibitorCategoryViewSet, ModeratorCategoryViewSet
+from . import views
 
 app_name = "base"
 
+
 router = DefaultRouter()
 
-router.register(r'moderator/category/<int:exhibitor_id>', ModeratorCategoryViewSet, basename='m-category')
+# EXHIBITOR URLS REGISTER
+router.register(r'exhibitor/category', views.ExhibitorCategoryViewSet)
+router.register(r'exhibitor/case', views.ExhibitorCaseViewSet)
+router.register(r'exhibitor/comment', views.ExhibitorCommentViewSet)
+router.register(r'exhibitor/location', views.ExhibitorLocationViewSet)
+router.register(r'exhibitor/partner', views.ExhibitorPartnerViewSet)
+router.register(r'exhibitor/product', views.ExhibitorProductViewSet)
 
-router.register(r'exhibitor/category', ExhibitorCategoryViewSet, basename='e-category')
+# MODETATOR URLS REGISTER
+router.register(r'moderator/category/(?P<exhibitor_id>\d+)', views.ModeratorCategoryViewSet)
+router.register(r'moderator/case/(?P<exhibitor_id>\d+)', views.ModeratorCaseViewSet)
+router.register(r'moderator/comment/(?P<exhibitor_id>\d+)', views.ModeratorCommentViewSet)
+router.register(r'moderator/location/(?P<exhibitor_id>\d+)', views.ModeratorLocationViewSet)
+router.register(r'moderator/partner/(?P<exhibitor_id>\d+)', views.ModeratorPartnerViewSet)
+router.register(r'moderator/product/(?P<exhibitor_id>\d+)', views.ModeratorProductViewSet)
+router.register(r'moderator/exhibitor', views.ModeratorExhibitorViewSet)
 
-urlpatterns = [
-    # EXHIBITOR URLS
-    # path("category/", ModeratorCategoryViewSet.as_view({'get':'list'}), name="category"),
-    # path("category/", ModeratorCategoryViewSet.as_view({'post':'create'}), name="category"),
-    # path("location/", .as_view(), name=""),
-    # path("comment/", .as_view(), name=""),
-    # path("product/", .as_view(), name=""),
-    # path("partner/", .as_view(), name=""),
-    # path("case/", .as_view(), name=""),
-
-    # MODETATOR URLS
-    # Exhibitor profile:
-    # path("exhibitor/", .as_view(), name=""),
-    # path("category/", .as_view(), name=""),
-    # path("location/", .as_view(), name=""),
-    # path("comment/", .as_view(), name=""),
-    # path("product/", .as_view(), name=""),
-    # path("partner/", .as_view(), name=""),
-    # path("case/", .as_view(), name=""),
-    # Other:
-    # path("brand/", .as_view(), name=""),
-    # path("producer/", .as_view(), name=""),
-    # path("type-cooperation/", .as_view(), name=""),
-
-]
+urlpatterns = []
 
 urlpatterns += router.urls
