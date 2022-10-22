@@ -20,7 +20,7 @@ jobs:
       - name: Read Docker Image Identifiers
         id: read-docker-image-identifiers
         run: |
-          BASE_IMAGE_NAME="$(echo ${{ github.repository }} | tr '[:upper:]' '[:lower:]')""
+          BASE_IMAGE_NAME="$(echo ${{ github.repository }} | tr '[:upper:]' '[:lower:]')"
           echo "BASE_IMAGE_NAME=${BASE_IMAGE_NAME}" >> $GITHUB_ENV
 
       - name: Checkout repository
