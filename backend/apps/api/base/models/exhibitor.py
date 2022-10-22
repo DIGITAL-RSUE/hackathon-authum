@@ -1,8 +1,10 @@
+from django.contrib.auth import get_user_model
 from django.db import models
 from django.utils.translation import gettext_lazy as _
 
 from ..enums import DisplayPrice, ImportSubstitution
 
+User = get_user_model()
 
 class Exhibitor(models.Model):
     """
@@ -10,6 +12,8 @@ class Exhibitor(models.Model):
     демонстрирующий на ней что-либо
     """
 
+
+    user = models.ForeignKey(User, verbose_name=_("Пользователь"), on_delete=models.CASCADE,blank=True,null=True)
     name = models.CharField(_("Название"), max_length=250)
     description = models.TextField(_("Описание"), blank=True, null=True,)
     about = models.TextField(_("О компании"), blank=True, null=True,)

@@ -22,13 +22,17 @@ class Category(
         "self",
         verbose_name=_("Родительская категория"),
         on_delete=models.CASCADE,
+        related_name="sub_categories"
     )
 
     class Meta:
         verbose_name = _("Категория")
         verbose_name_plural = _("Категории")
 
-
+    def __str__(self):
+        if self.parent:
+            return f"{self.name} / {self.name}"
+        return self.name
 # Сущность “Категории”:
 # ID
 # + Название

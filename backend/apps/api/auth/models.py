@@ -7,6 +7,15 @@ from django.utils import timezone
 from django.utils.translation import gettext_lazy as _
 
 
+class UserRole(models.IntegerChoices):
+    """
+    Перечисление
+    """
+
+    MODERATOR = 0, _("Модератор")
+    EXHIBITOR = 1, _("Экспонент")
+
+
 class ProxyGroup(Group):
     class Meta:
         proxy = True
@@ -36,6 +45,12 @@ class User(AbstractBaseUser, PermissionsMixin):
         _("Отчество"), max_length=150, null=True, blank=True
     )
     email = models.EmailField(_("email address"), blank=True)
+    role = models.IntegerField(
+        verbose_name=_("Роль в пользователя системе"),
+        choices=UserRole.choices,
+        blank=True,
+        null=True,
+    )
     is_staff = models.BooleanField(
         _("staff status"),
         default=False,
