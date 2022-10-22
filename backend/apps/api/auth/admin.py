@@ -13,7 +13,10 @@ class UserAdmin(BaseAdminMixin, BaseUserAdmin):
     use_select2_form = False
     fieldsets = (
         (None, {"fields": ("username", "password")}),
-        (_("Personal info"), {"fields": ("first_name", "last_name", "email")}),
+        (
+            _("Personal info"),
+            {"fields": ("first_name", "last_name", "surname", "email")},
+        ),
         (
             _("Permissions"),
             {

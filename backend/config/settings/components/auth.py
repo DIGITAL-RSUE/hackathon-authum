@@ -9,7 +9,8 @@ AUTH_PASSWORD_VALIDATORS = [
     },
     {
         "NAME": (
-            "django.contrib.auth." "password_validation.MinimumLengthValidator"
+            "django.contrib.auth"
+            ".password_validation.MinimumLengthValidator"
         ),
     },
     {
@@ -31,3 +32,7 @@ LOGIN_REDIRECT_URL = "/"
 LOGOUT_REDIRECT_URL = "/"
 
 AUTH_USER_MODEL = "auth_api.User"
+
+AUTHENTICATION_BACKENDS = [
+    "django.contrib.auth.backends.ModelBackend",
+]

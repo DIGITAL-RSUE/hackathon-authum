@@ -5,8 +5,6 @@ from config.settings.components.paths import TEMPLATES_DIR
 
 DEBUG = env("DEBUG", default=True)
 
-SITE_DOMAIN = env("SITE_DOMAIN", default="*")
-
 ADMIN_USERNAME = env("ADMIN_USERNAME", default=None)
 ADMIN_PASSWORD = env("ADMIN_PASSWORD", default=None)
 ADMIN_EMAIL = env("ADMIN_EMAIL", default=None)
@@ -16,7 +14,9 @@ DEFAULT_FIXTURES = env.list("DEFAULT_FIXTURES", default=[])
 TEMPLATES = [
     {
         "BACKEND": "django.template.backends.django.DjangoTemplates",
-        "DIRS": [TEMPLATES_DIR],
+        "DIRS": [
+            TEMPLATES_DIR,
+        ],
         "OPTIONS": {
             "loaders": [
                 "apptemplates.Loader",
@@ -29,16 +29,16 @@ TEMPLATES = [
                 "django.contrib.auth.context_processors.auth",
                 "django.contrib.messages.context_processors.messages",
                 "django.template.context_processors.i18n",
-                "django_settings_export.settings_export",
             ],
         },
     },
 ]
 
+SITE_ID = 1
+
 ROOT_URLCONF = "config.urls"
 WSGI_APPLICATION = "config.wsgi.application"
-SITE_ID = 1
 DEFAULT_AUTO_FIELD = "django.db.models.AutoField"
+
 X_FRAME_OPTIONS = "SAMEORIGIN"
 SILENCED_SYSTEM_CHECKS = ["security.W019"]
-DEFAULT_REDIRECT_URL = SITE_DOMAIN

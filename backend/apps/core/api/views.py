@@ -22,5 +22,7 @@ SchemaView = get_schema_view(
     ),
     public=False,
     permission_classes=(permissions.AllowAny,),
-    patterns=[path("api/", include("apps.core.api.urls"))],
+    patterns=[
+        path("api/", include("apps.core.api.urls")),
+    ],
 )

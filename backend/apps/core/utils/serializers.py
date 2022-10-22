@@ -17,11 +17,11 @@ def inline_serializer(*, fields: dict, **kwargs):
 def get_model_serializer_class(
     *,
     model: Model,
-    model_fields: list,
+    model_fields: list = None,
     fields: dict = None,
     ref_name: str = None,
 ):
-    fields = fields | {}
+    fields = fields or {}
     name = f"{model.__name__}Serializer"
 
     meta_class = type(
@@ -29,7 +29,7 @@ def get_model_serializer_class(
         (object,),
         {
             "model": model,
-            "fields": model_fields,
+            "fields": model_fields or "__all__",
             "ref_name": ref_name or model.__name__,
         },
     )
@@ -40,12 +40,13 @@ def get_model_serializer_class(
 def inline_model_serializer(
     *,
     model: Model,
-    model_fields: list,
+    model_fields: list = None,
     fields: dict = None,
     ref_name: str = None,
     **kwargs,
 ):
-    fields = fields | {}
+    fields = fields or {}
+    model_fields = model_fields or "__all__"
 
     serializer_class = get_model_serializer_class(
         model=model,

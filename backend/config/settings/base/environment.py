@@ -9,6 +9,7 @@ BACKEND_DIR = os.path.dirname(CONFIG_DIR)
 PROJECT_DIR = os.path.dirname(BACKEND_DIR)
 ENV_FILE = os.path.join(PROJECT_DIR, ".env")
 
+
 env = environ.Env(
     DEBUG=(bool, True),
     USE_SQLITE=(bool, True),

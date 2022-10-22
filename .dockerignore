@@ -24,7 +24,6 @@ env/
 .env
 .env.local
 .env.production
-.env.example
 
 # System Files
 .DS_Store

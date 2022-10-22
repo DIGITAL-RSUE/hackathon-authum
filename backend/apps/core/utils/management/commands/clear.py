@@ -10,15 +10,6 @@ class Command(BaseCommand):
 
     help = "Remove assets files"
 
-    def remove_dist_dir(self):
-        try:
-            shutil.rmtree(settings.DIST_DIR)
-            self.stdout.write(
-                self.style.SUCCESS(f"  • Folder {settings.DIST_DIR} removed")
-            )
-        except FileNotFoundError:
-            pass
-
     def clean_public_static_dir(self):
         try:
             for root, folders, files in os.walk(settings.PUBLIC_STATIC_DIR):
@@ -37,5 +28,4 @@ class Command(BaseCommand):
             pass
 
     def handle(self, *args, **options):
-        self.remove_dist_dir()
         self.clean_public_static_dir()

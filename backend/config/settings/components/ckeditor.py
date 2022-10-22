@@ -96,7 +96,6 @@ CKEDITOR_CONFIGS = {
                     "SpecialChar",
                     "PageBreak",
                     "Iframe",
-                    "CodeSnippet",
                 ],
             },
             "/",
@@ -133,8 +132,6 @@ CKEDITOR_CONFIGS = {
                 "dialog",
                 "dialogui",
                 "elementspath",
-                "codesnippet",
-                "prism",
             ]
         ),
     }

@@ -1,9 +1,9 @@
 /dist
-/src-bex/www
-/src-capacitor
-/src-cordova
+/frontend/src-capacitor
+/frontend/src-cordova
 /.quasar
 /node_modules
 .eslintrc.js
-babel.config.js
-/src-ssr
+/frontend/src-ssr
+/public/static
+/private/static

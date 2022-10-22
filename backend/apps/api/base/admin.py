@@ -1,3 +1,4 @@
+from apps.core.utils.admin import BaseAdminMixin
 from django.contrib import admin
 
 from .models import (
@@ -16,13 +17,13 @@ from .models import (
 
 
 @admin.register(Brand)
-class BrandAdmin(admin.ModelAdmin):
+class BrandAdmin(BaseAdminMixin, admin.ModelAdmin):
     list_display = ("id", "name")
     search_fields = ("name",)
 
 
 @admin.register(Case)
-class CaseAdmin(admin.ModelAdmin):
+class CaseAdmin(BaseAdminMixin, admin.ModelAdmin):
     list_display = (
         "id",
         "exhibitor",
@@ -38,21 +39,21 @@ class CaseAdmin(admin.ModelAdmin):
 
 
 @admin.register(Category)
-class CategoryAdmin(admin.ModelAdmin):
+class CategoryAdmin(BaseAdminMixin, admin.ModelAdmin):
     list_display = ("id", "exhibitor", "name", "parent")
     list_filter = ("exhibitor", "parent")
     search_fields = ("name",)
 
 
 @admin.register(Comment)
-class CommentAdmin(admin.ModelAdmin):
+class CommentAdmin(BaseAdminMixin, admin.ModelAdmin):
     list_display = ("id", "exhibitor", "picture", "name", "company", "text")
     list_filter = ("exhibitor",)
     search_fields = ("name",)
 
 
 @admin.register(Exhibitor)
-class ExhibitorAdmin(admin.ModelAdmin):
+class ExhibitorAdmin(BaseAdminMixin, admin.ModelAdmin):
     list_display = (
         "id",
         "name",
@@ -74,7 +75,7 @@ class ExhibitorAdmin(admin.ModelAdmin):
 
 
 @admin.register(Location)
-class LocationAdmin(admin.ModelAdmin):
+class LocationAdmin(BaseAdminMixin, admin.ModelAdmin):
     list_display = (
         "id",
         "exhibitor",
@@ -88,20 +89,20 @@ class LocationAdmin(admin.ModelAdmin):
 
 
 @admin.register(Partner)
-class PartnerAdmin(admin.ModelAdmin):
+class PartnerAdmin(BaseAdminMixin, admin.ModelAdmin):
     list_display = ("id", "exhibitor", "logo", "name")
     list_filter = ("exhibitor",)
     search_fields = ("name",)
 
 
 @admin.register(Producer)
-class ProducerAdmin(admin.ModelAdmin):
+class ProducerAdmin(BaseAdminMixin, admin.ModelAdmin):
     list_display = ("id", "name")
     search_fields = ("name",)
 
 
 @admin.register(Product)
-class ProductAdmin(admin.ModelAdmin):
+class ProductAdmin(BaseAdminMixin, admin.ModelAdmin):
     list_display = (
         "id",
         "exhibitor",
@@ -125,12 +126,12 @@ class ProductAdmin(admin.ModelAdmin):
 
 
 @admin.register(ProductPicture)
-class ProductPictureAdmin(admin.ModelAdmin):
+class ProductPictureAdmin(BaseAdminMixin, admin.ModelAdmin):
     list_display = ("id", "product", "picture", "keywords")
     list_filter = ("product",)
 
 
 @admin.register(TypeCooperation)
-class TypeCooperationAdmin(admin.ModelAdmin):
+class TypeCooperationAdmin(BaseAdminMixin, admin.ModelAdmin):
     list_display = ("id", "name")
     search_fields = ("name",)

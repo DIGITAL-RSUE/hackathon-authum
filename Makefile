@@ -1,16 +1,16 @@
 # Including commands
 run-django-server:
-	poetry run task server
-
-run-quasar:
-	quasar dev
-
-install-frontend:
-	yarn
+	poetry run task server localhost:8000
 
 install-backend:
 	poetry run pip install -U setuptools
 	poetry install --no-root
+
+install-frontend:
+	yarn install
+
+run-quasar-server:
+	yarn dev
 
 .PHONY: clear
 clear:
@@ -24,10 +24,6 @@ createadmin:
 migrate:
 	poetry run task migrate
 
-.PHONY: migrations
-migrations:
-	poetry run task makemigrations
-
 # Primary commands
 .PHONY: install
 install:
@@ -36,6 +32,7 @@ install:
 	@make migrate
 	poetry run task defaultadmin
 	poetry run task defaultfixtures
+	poetry run safety check
 
 .PHONY: install-prod
 install-prod:
@@ -43,26 +40,14 @@ install-prod:
 	@make -j 2 install-backend install-frontend
 	poetry run task initconfig
 
-.PHONY: docker
-docker:
-	python docker/initconfig.py --debug --docker
-	cd docker && docker-compose up
-
 .PHONY: run
 run:
-	@make -j 2 run-django-server run-quasar
+	@make -j 2 run-django-server run-quasar-server
 
 .PHONY: build
 build:
-	quasar build
+	yarn build
 	poetry run task collectstatic
 	@make migrate
 	poetry run task defaultadmin
 	poetry run task defaultfixtures
-
-.PHONY: deploy
-deploy:
-	@make build
-	sudo systemctl restart gunicorn
-	sudo systemctl restart nginx
-

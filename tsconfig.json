@@ -1,31 +1,17 @@
 {
-  "extends": "@quasar/app-webpack/tsconfig-preset",
+  "extends": "@quasar/app-vite/tsconfig-preset",
   "compilerOptions": {
-    "allowJs": false,
-    "esModuleInterop": true,
-    "module": "esnext",
-    "moduleResolution": "node",
-    "noEmit": true,
-    "resolveJsonModule": true,
-    "forceConsistentCasingInFileNames": true,
-    "sourceMap": true,
-    "strict": true,
-    "target": "es6",
     "baseUrl": ".",
-    "typeRoots": ["node_modules/@types", "src/models"],
     "paths": {
-      "src/*": ["src/*"],
+      "src/*": ["frontend/src/*"],
       "app/*": ["*"],
+      "frontend/*": ["frontend/*"],
       "components/*": ["src/components/*"],
       "layouts/*": ["src/layouts/*"],
       "pages/*": ["src/pages/*"],
       "assets/*": ["src/assets/*"],
       "boot/*": ["src/boot/*"],
-      "hooks/*": ["./src/hooks/*"],
-      "images/*": ["./src/assets/images/*"],
-      "models": ["./src/models/index.ts"],
-      "store/*": ["./src/store/*"]
+      "stores/*": ["src/stores/*"]
     }
-  },
-  "exclude": ["dist", ".quasar", "node_modules"]
+  }
 }

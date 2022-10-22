@@ -1,10 +1,8 @@
 *
 !.gitignore
 !logs/
-!static/
 !media/
+!static/
+!static/**
 !locale/
 !locale/**
-!templates/**
-!templates/
-!templates/**

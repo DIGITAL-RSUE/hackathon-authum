@@ -1,1 +1,4 @@
 *.html
+.gtiignore
+/public/static
+/private/static

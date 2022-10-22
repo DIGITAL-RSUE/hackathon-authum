@@ -9,17 +9,20 @@ DEFAULT_APPS = [
     "django.contrib.messages",
     "django.contrib.staticfiles",
     "django.contrib.humanize",
+    "django.contrib.sitemaps",
     "import_export",
     "corsheaders",
-    "modeltranslation",
-    "widget_tweaks",
     "rest_framework",
+    "rest_framework.authtoken",
+    "rest_framework_api_key",
     "drf_yasg",
     "django_cleanup.apps.CleanupConfig",
-    "etc",
+    "django_filters",
+    "easy_select2",
     "service_objects",
     "ckeditor",
     "ckeditor_uploader",
+    "adminsortable2",
 ]
 
 PROJECT_APPS = [
@@ -32,8 +35,9 @@ PROJECT_APPS = [
 
 DEVELOPER_APPS = [
     *DEFAULT_APPS,
-    *PROJECT_APPS,
     "django_extensions",
+    *PROJECT_APPS,
+    "silk",
     "debug_toolbar",
 ]
 

@@ -8,7 +8,7 @@ from config.settings.components.paths import (
 
 SECURE_PROXY_SSL_HEADER = ("HTTP_X_FORWARDED_PROTO", "https")
 
-ALLOWED_HOSTS = list(map(str.strip, env("SITE_DOMAIN").split(",")))
+ALLOWED_HOSTS = list(map(str.strip, env("SITE_DOMAIN").split(',')))
 
 INSTALLED_APPS = [
     *PRODUCTION_APPS,
@@ -23,7 +23,7 @@ if env("USE_SQLITE", default=False):
         "default": {
             "ENGINE": "django.db.backends.sqlite3",
             "NAME": DEV_DATABASE_FILE,
-            "TEST": {"NAME": TEST_DATABASE_FILE},
+            "TEST": {"NAME": TEST_DATABASE_FILE,},
         },
     }
 else:

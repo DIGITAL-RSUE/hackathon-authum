@@ -1,5 +1,5 @@
 DEFAULT_MIDDLEWARE = [
-    # "corsheaders.middleware.CorsMiddleware",
+    "corsheaders.middleware.CorsMiddleware",
     "django.middleware.security.SecurityMiddleware",
     "django.contrib.sessions.middleware.SessionMiddleware",
     "django.middleware.locale.LocaleMiddleware",
@@ -12,6 +12,7 @@ DEFAULT_MIDDLEWARE = [
 
 DEVELOPER_MIDDLEWARE = [
     *DEFAULT_MIDDLEWARE,
+    "silk.middleware.SilkyMiddleware",
     "debug_toolbar.middleware.DebugToolbarMiddleware",
 ]
 

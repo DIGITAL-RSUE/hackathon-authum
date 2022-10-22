@@ -17,6 +17,12 @@ class Command(BaseCommand):
             action="store_true",
             help="Create .env file with settings for debugging",
         )
+        parser.add_argument(
+            "--docker",
+            default=False,
+            action="store_true",
+            help="Use sqlite database",
+        )
 
     def get_example_env(self):
         """Get content .env.example"""
@@ -63,6 +69,7 @@ class Command(BaseCommand):
         return "".join(lines)
 
     def handle(self, *args, **options):
+        is_docker = options["docker"]
         is_debug = options["debug"]
         content = self.get_example_env()
         key = self.generate_secret_key()
@@ -83,6 +90,14 @@ class Command(BaseCommand):
             )
             content = self.replace_line(
                 content, "SITE_DOMAIN", "SITE_DOMAIN='*'"
+            )
+
+        if is_docker:
+            content = self.replace_line(
+                content, "USE_SQLITE", "USE_SQLITE=False"
+            )
+            content = self.replace_line(
+                content, "DEV_IN_DOCKER", "DEV_IN_DOCKER=True"
             )
 
         self.create_env_file(content, is_debug)
