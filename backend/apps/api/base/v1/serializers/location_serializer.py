@@ -4,6 +4,10 @@ from ...models import Location
 
 
 class LocationSerializer(serializers.ModelSerializer):
+    """
+    Сериализатор локаций
+    """
+
     class Meta:
         model = Location
         exclude  = ["exhibitor",]

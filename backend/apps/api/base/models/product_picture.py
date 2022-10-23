@@ -13,6 +13,7 @@ class ProductPicture(models.Model):
         on_delete=models.CASCADE,
         blank=True,
         null=True,
+        related_name="pictures",
     )
     picture = models.ImageField(_("Изображение"), blank=True, null=True)
     keywords = models.CharField(_("Ключевые слова"), max_length=150)
