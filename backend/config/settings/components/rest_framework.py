@@ -26,6 +26,9 @@ REST_FRAMEWORK = {
     "DATE_FORMAT": "%d.%m.%Y",
     "DATE_INPUT_FORMATS": DATE_INPUT_FORMATS,
     "DATETIME_FORMAT": "%d.%m.%Y %H:%M",
+    "DEFAULT_FILTER_BACKENDS": (
+        "django_filters.rest_framework.DjangoFilterBackend",
+    ),
 }
 
 CORS_ALLOW_ALL_ORIGINS = True

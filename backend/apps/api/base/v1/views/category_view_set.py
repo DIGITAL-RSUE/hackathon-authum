@@ -1,25 +1,37 @@
 from rest_framework import status, viewsets
+from rest_framework.decorators import action
 
 from ...models import Category
-from ..serializers import CategorySerializer
-
-# from rest_framework.decorators import action
-# from rest_framework.response import Response
+from ..serializers import CategoryNestedSerializer, CategorySerializer
 
 
-# from myapp.serializers import UserSerializer, PasswordSerializer
+class ExhibitorCategoryViewSet(viewsets.ModelViewSet):
+    """
+    """
+
+    serializer_class = CategorySerializer
+    queryset = Category.objects.all()
 
 
 class ModeratorCategoryViewSet(viewsets.ModelViewSet):
+    """
+    """
+
     serializer_class = CategorySerializer
     queryset = Category.objects.all()
-    lookup_url_kwarg = "id"
 
 
+class ExhibitorCategoryNestedViewSet(viewsets.ModelViewSet):
+    """
+    """
+
+    serializer_class = CategoryNestedSerializer
+    queryset = Category.objects.all()
 
 
-class ExhibitorCategoryViewSet(ModeratorCategoryViewSet):
+class ModeratorCategoryNestedViewSet(viewsets.ModelViewSet):
+    """
+    """
 
-    def get_object(self):
-        self.kwargs[self.lookup_url_kwarg or self.lookup_field] = self.request.user.id
-        return super().get_object()
+    serializer_class = CategoryNestedSerializer
+    queryset = Category.objects.all()
