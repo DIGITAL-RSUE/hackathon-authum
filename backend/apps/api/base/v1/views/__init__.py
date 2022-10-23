@@ -1,7 +1,9 @@
 from .brand_view_set import ModeratorBrandViewSet
 from .case_view_set import ExhibitorCaseViewSet, ModeratorCaseViewSet
 from .category_view_set import (
+    ExhibitorCategoryNestedViewSet,
     ExhibitorCategoryViewSet,
+    ModeratorCategoryNestedViewSet,
     ModeratorCategoryViewSet,
 )
 from .comment_view_set import ExhibitorCommentViewSet, ModeratorCommentViewSet
@@ -15,6 +17,9 @@ from .product_view_set import ExhibitorProductViewSet, ModeratorProductViewSet
 
 __all__ = [
     "ModeratorExhibitorViewSet",
+
+    "ExhibitorCategoryNestedViewSet",
+    "ModeratorCategoryNestedViewSet",
 
     "ExhibitorLocationViewSet",
     "ModeratorLocationViewSet",
