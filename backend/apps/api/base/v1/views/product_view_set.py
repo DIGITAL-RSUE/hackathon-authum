@@ -14,7 +14,7 @@ class ProductFilter(filters.FilterSet):
 
     class Meta:
         model = Product
-        exclude = ["video",]
+        exclude = ["video","exhibitor",]
 
 class ProductPagination(PageNumberPagination):
 
