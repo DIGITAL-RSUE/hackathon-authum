@@ -25,8 +25,8 @@ services:
     expose:
       - 8000
     volumes:
-      - static:/var/www/app/serve/static
-      - media:/var/www/app/serve/media
+      - static:/var/www/app/public/static
+      - media:/var/www/app/public/media
       - logs:/var/www/app/private/logs
       - ${PROJECT_PATH}/.env:/var/www/app/.env
     restart: always
@@ -49,8 +49,8 @@ services:
       - ${PROJECT_PATH}/robots.txt:/etc/nginx/conf.d/robots.txt
       # - ${PROJECT_PATH}./ssl/certificate.crt:/var/www/app/public/keys/certificate.crt
       # - ${PROJECT_PATH}/ssl/private_key.key:/var/www/app/public/keys/private_key.key
-      - static:/var/www/app/serve/static
-      - media:/var/www/app/serve/media
+      - static:/var/www/app/public/static
+      - media:/var/www/app/public/media
       - logs:/var/www/app/private/logs
     restart: always
     ports:
